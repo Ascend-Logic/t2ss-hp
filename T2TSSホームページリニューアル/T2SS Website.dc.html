@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    html, body { margin: 0; background: #161826; }
+    body { font-family: "Inter", "Noto Sans JP", system-ui, sans-serif; }
+    a { color: #9184d9; text-decoration: none; }
+    a:hover { color: #b5abfc; }
+  </style>
+</helmet>
+<div style="min-height:100vh;background:var(--color-bg);color:var(--color-text);font-family:'Inter','Noto Sans JP',system-ui,sans-serif;display:flex;flex-direction:column">
+
+  <header style="position:sticky;top:0;z-index:10;background:color-mix(in srgb, var(--color-bg) 88%, transparent);backdrop-filter:blur(12px)">
+    <div style="max-width:1120px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+      <a href="#" onClick="{{ goHome }}" style="display:flex;align-items:center;gap:10px;color:var(--color-text);margin-right:auto">
+        <span style="width:28px;height:28px;border:1px solid var(--color-accent);border-radius:6px;display:grid;place-items:center;font-size:12px;font-weight:500;color:var(--color-accent);letter-spacing:0.02em">T2</span>
+        <span style="font-size:15px;font-weight:500;letter-spacing:-0.01em">T2サミットソリューションズ合同会社</span>
+      </a>
+      <nav style="display:flex;gap:22px;font-size:13.5px;flex-wrap:wrap">
+        <a href="#" onClick="{{ goHome }}" style="color: {{ homeColor }}" style-hover="color:var(--color-accent)">ホーム</a>
+        <a href="https://t2tss.com/blog/" style="color:var(--color-neutral-300)" style-hover="color:var(--color-accent)">お知らせ</a>
+        <a href="#" onClick="{{ goCompany }}" style="color: {{ companyColor }}" style-hover="color:var(--color-accent)">会社概要</a>
+        <a href="#" onClick="{{ goServices }}" style="color:var(--color-neutral-300)" style-hover="color:var(--color-accent)">事業概要</a>
+        <a href="#" onClick="{{ goRecruit }}" style="color: {{ recruitColor }}" style-hover="color:var(--color-accent)">Recruitment</a>
+      </nav>
+    </div>
+    <div style="height:1px;background:linear-gradient(to right, transparent, var(--color-divider) 48px, var(--color-divider) calc(100% - 48px), transparent)"></div>
+  </header>
+
+  <main style="flex:1">
+
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+    <section data-screen-label="Home" style="max-width:1120px;margin:0 auto;padding:96px 24px 72px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;align-items:end">
+      <div>
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent);margin-bottom:20px">T2 Summit Solutions</div>
+        <h1 style="font-size:clamp(30px,4vw,46px);line-height:1.2;letter-spacing:-0.02em;font-weight:500;margin:0 0 28px;text-wrap:pretty">「T2サミットソリューションズ合同会社(T2SS)」へようこそ</h1>
+        <p style="font-size:16px;line-height:1.9;color:var(--color-neutral-300);margin:0;text-wrap:pretty">T2SS では、<strong style="color:var(--color-text);font-weight:500">“お客様と共に頂上をめざす”</strong>というビジョンを掲げ、以下のビジネスを主軸としまして、お客様の事業成長を支える一員となる事を目指しております。</p>
+        <p style="font-size:16px;line-height:1.9;color:var(--color-neutral-300);margin:16px 0 0;text-wrap:pretty">IT関連のみならず、業務効率化などのお悩みをお持ちの企業の皆様、一度ご連絡下さい。</p>
+      </div>
+      <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column">
+        <li style="display:flex;align-items:center;gap:16px;padding:22px 0;font-size:18px;font-weight:500;border-bottom:1px solid var(--color-divider)"><span style="width:20px;height:1px;background:var(--color-accent);flex:none"></span>セキュリティソリューション</li>
+        <li style="display:flex;align-items:center;gap:16px;padding:22px 0;font-size:18px;font-weight:500;border-bottom:1px solid var(--color-divider)"><span style="width:20px;height:1px;background:var(--color-accent);flex:none"></span>ITエンジニア提供サービス</li>
+        <li style="display:flex;align-items:center;gap:16px;padding:22px 0;font-size:18px;font-weight:500"><span style="width:20px;height:1px;background:var(--color-accent);flex:none"></span>IT関連全般のサービス事業</li>
+      </ul>
+    </section>
+
+    <section ref="{{ servicesRef }}" style="max-width:1120px;margin:0 auto;padding:56px 24px 80px">
+      <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent);margin-bottom:28px">Services ／ 事業概要</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px">
+        <div style="background:var(--color-surface);border-radius:var(--radius-lg);padding:32px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:20px">
+          <div style="font-size:12px;color:var(--color-neutral-500);letter-spacing:0.08em">01</div>
+          <h3 style="font-size:22px;font-weight:500;margin:0;letter-spacing:-0.01em">セキュリティソリューション事業</h3>
+          <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;font-size:15px;color:var(--color-neutral-300);line-height:1.6">
+            <li>・セキュリティコンサルサービス</li>
+            <li>・脆弱性診断サービス<br><span style="color:var(--color-neutral-500)">（Web/プラットフォーム）</span></li>
+            <li>・モバイルアプリ診断</li>
+            <li>・WAF＋簡易SOCサービス 他</li>
+          </ul>
+        </div>
+        <div style="background:var(--color-surface);border-radius:var(--radius-lg);padding:32px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:20px">
+          <div style="font-size:12px;color:var(--color-neutral-500);letter-spacing:0.08em">02</div>
+          <h3 style="font-size:22px;font-weight:500;margin:0;letter-spacing:-0.01em">ITエンジニア提供事業</h3>
+          <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;font-size:15px;color:var(--color-neutral-300);line-height:1.6">
+            <li>・プロジェクトマネジメント</li>
+            <li>・オープン系技術者の提供</li>
+            <li>・Web系技術者の提供</li>
+            <li>・SAP他ERP導入エンジニアの提供 他</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section style="max-width:1120px;margin:0 auto;padding:0 24px 96px">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px">
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent)">News ／ お知らせ</div>
+        <a href="https://t2tss.com/blog/" style="font-size:13px;color:var(--color-neutral-400)" style-hover="color:var(--color-accent)">すべてのお知らせ →</a>
+      </div>
+      <sc-for list="{{ news }}" as="n" hint-placeholder-count="2">
+        <article style="display:grid;grid-template-columns:minmax(80px,120px) minmax(0,1fr);gap:24px;padding:32px 0;background:linear-gradient(to right, transparent, var(--color-divider) 48px, var(--color-divider) calc(100% - 48px), transparent) no-repeat bottom / 100% 1px">
+          <time style="font-size:13px;color:var(--color-neutral-500);padding-top:4px">{{ n.date }}</time>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <a href="{{ n.url }}" style="font-size:19px;font-weight:500;line-height:1.5;color:var(--color-text);letter-spacing:-0.01em;text-wrap:pretty" style-hover="color:var(--color-accent-300)">{{ n.title }}</a>
+            <p style="margin:0;font-size:14.5px;line-height:1.8;color:var(--color-neutral-400);text-wrap:pretty">{{ n.excerpt }}</p>
+            <a href="{{ n.url }}" style="font-size:13px;color:var(--color-accent);display:inline-flex;gap:6px;align-items:center" style-hover="color:var(--color-accent-300)">Read more →</a>
+          </div>
+        </article>
+      </sc-for>
+    </section>
+
+    <section style="background:linear-gradient(180deg, var(--color-bg) 0%, var(--color-section) 100%)">
+      <div style="max-width:1120px;margin:0 auto;padding:96px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:56px;align-items:center">
+        <div>
+          <h2 style="font-size:clamp(28px,3.5vw,40px);font-weight:500;letter-spacing:-0.02em;margin:0 0 32px">About us</h2>
+          <address style="font-style:normal;font-size:15.5px;line-height:2;color:var(--color-neutral-200);margin:0 0 32px">
+            〒152-0035東京都目黒区自由が丘1丁目16-18<br>
+            T2サミットソリューションズ合同会社<br>
+            TEL: 070-3163-3020<br>
+            MAIL：info@t2tss.com
+          </address>
+          <a href="#" onClick="{{ goCompany }}" style="display:inline-flex;align-items:center;gap:8px;font-size:13px;letter-spacing:0.1em;font-weight:500;color:var(--color-accent-300);border:1px solid var(--color-accent-400);border-radius:var(--radius-md);padding:12px 22px" style-hover="background:color-mix(in srgb, var(--color-accent) 14%, transparent)">READ MORE</a>
+        </div>
+        <img src="https://t2tss.com/wp-content/uploads/2026/04/about-1-1.jpg" alt="" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius-lg);box-shadow:var(--shadow-md)">
+      </div>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ isCompany }}" hint-placeholder-val="{{ false }}">
+    <section data-screen-label="会社概要" style="max-width:1120px;margin:0 auto;padding:96px 24px 120px">
+      <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent);margin-bottom:20px">Company</div>
+      <h1 style="font-size:clamp(30px,4vw,46px);font-weight:500;letter-spacing:-0.02em;margin:0 0 28px">会社概要</h1>
+      <p style="font-size:16px;line-height:1.9;color:var(--color-neutral-300);max-width:720px;margin:0 0 72px;text-wrap:pretty">T2SS では、“お客様と共に頂上をめざす”というビジョンを掲げ、以下のビジネスを主軸としまして、お客様の事業成長を支える一員となる事を目指しております。</p>
+      <dl style="margin:0;max-width:960px">
+        <sc-for list="{{ company }}" as="row" hint-placeholder-count="9">
+          <div style="display:grid;grid-template-columns:minmax(120px,180px) minmax(0,1fr);gap:24px;padding:22px 0;background:linear-gradient(to right, transparent, var(--color-divider) 48px, var(--color-divider) calc(100% - 48px), transparent) no-repeat bottom / 100% 1px">
+            <dt style="font-size:13px;color:var(--color-neutral-500);padding-top:3px">{{ row.k }}</dt>
+            <dd style="margin:0;font-size:15.5px;line-height:1.85;white-space:pre-line;color:var(--color-neutral-200)">{{ row.v }}</dd>
+          </div>
+        </sc-for>
+      </dl>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ isRecruit }}" hint-placeholder-val="{{ false }}">
+    <section data-screen-label="Recruitment" style="max-width:1120px;margin:0 auto;padding:96px 24px 120px">
+      <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent);margin-bottom:20px">Recruitment</div>
+      <h1 style="font-size:clamp(30px,4vw,46px);font-weight:500;letter-spacing:-0.02em;margin:0 0 16px">募集職種：IT関連</h1>
+      <div style="height:72px"></div>
+      <dl style="margin:0;max-width:960px">
+        <sc-for list="{{ recruit }}" as="row" hint-placeholder-count="10">
+          <div style="display:grid;grid-template-columns:minmax(120px,180px) minmax(0,1fr);gap:24px;padding:22px 0;background:linear-gradient(to right, transparent, var(--color-divider) 48px, var(--color-divider) calc(100% - 48px), transparent) no-repeat bottom / 100% 1px">
+            <dt style="font-size:13px;color:var(--color-neutral-500);padding-top:3px">{{ row.k }}</dt>
+            <dd style="margin:0;font-size:15.5px;line-height:1.85;white-space:pre-line;color:var(--color-neutral-200)">{{ row.v }}</dd>
+          </div>
+        </sc-for>
+      </dl>
+    </section>
+  </sc-if>
+
+  </main>
+
+  <footer style="max-width:1120px;margin:0 auto;padding:40px 24px;width:100%;display:flex;flex-wrap:wrap;gap:16px 32px;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--color-neutral-500)">
+    <div style="display:flex;gap:20px;flex-wrap:wrap">
+      <a href="https://www.google.com/maps/place/%E3%80%92152-0035+%E6%9D%B1%E4%BA%AC%E9%83%BD%E7%9B%AE%E9%BB%92%E5%8C%BA%E8%87%AA%E7%94%B1%E3%81%8C%E4%B8%98%EF%BC%91%E4%B8%81%E7%9B%AE%EF%BC%91%EF%BC%96%E2%88%92%EF%BC%91%EF%BC%98" style="color:var(--color-neutral-500)" style-hover="color:var(--color-accent)">東京都目黒区自由が丘1丁目16－18</a>
+      <span>070-3163-3020</span>
+      <a href="mailto:info@t2tss.com" style="color:var(--color-neutral-500)" style-hover="color:var(--color-accent)">info@t2tss.com</a>
+    </div>
+    <div>© 2026 T2サミットソリューションズ合同会社</div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;page&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;company&quot;,&quot;recruit&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;'home'|'company'|'recruit'&quot;,&quot;section&quot;:&quot;表示ページ&quot;}}">
+class Component extends DCLogic {
+  state = { page: null };
+  servicesRef = React.createRef();
+  go(page) { return (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ page }); window.scrollTo(0, 0); }; }
+  renderVals() {
+    const page = this.state.page ?? this.props.page ?? 'home';
+    const active = 'var(--color-accent)', idle = 'var(--color-neutral-300)';
+    const goServices = (e) => {
+      e.preventDefault();
+      if (page !== 'home') { this.setState({ page: 'home' }, () => setTimeout(() => this.scrollServices(), 50)); }
+      else this.scrollServices();
+    };
+    return {
+      isHome: page === 'home', isCompany: page === 'company', isRecruit: page === 'recruit',
+      homeColor: page === 'home' ? active : idle,
+      companyColor: page === 'company' ? active : idle,
+      recruitColor: page === 'recruit' ? active : idle,
+      goHome: this.go('home'), goCompany: this.go('company'), goRecruit: this.go('recruit'), goServices,
+      servicesRef: this.servicesRef,
+      news: [
+        { date: '6月 22', url: 'https://t2tss.com/2026/06/22/%e3%83%ac%e3%82%a4%e3%83%b3%e3%83%95%e3%82%a9%e3%83%ac%e3%82%b9%e3%83%88%e3%81%a8t2%e3%82%b5%e3%83%9f%e3%83%83%e3%83%88%e3%82%bd%e3%83%aa%e3%83%a5%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%e3%82%ba%e3%80%81/',
+          title: 'レインフォレストとT2サミットソリューションズ、MCPを活用した安全な生成AIインテグレーション「AI実装支援サービス」を共同提供開始',
+          excerpt: '「コアシステムには触れず、業務を劇的に変える」 レインフォレストとT2サミットソリューションズ、MCPを活用した安全な生成AIインテグレーション「AI実装支援サービス」を共同提供開始 株式会社レインフォレスト（本社：東京 […]' },
+        { date: '4月 19', url: 'https://t2tss.com/2026/04/19/%e5%b7%a7%e5%a6%99%e5%8c%96%e3%81%99%e3%82%8b%e3%82%b5%e3%82%a4%e3%83%90%e3%83%bc%e6%94%bb%e6%92%83%e3%81%ab%e5%af%be%e3%81%97%e3%81%a6%e3%80%8c%e4%ba%ba%e3%83%bb%e3%83%97%e3%83%ad%e3%82%bb%e3%82%b9/',
+          title: '能動型SOC構築支援サービスの提供開始',
+          excerpt: '巧妙化するサイバー攻撃を「人・プロセス・テクノロジー」を融合し防御する 自律的に防御力を最大化する「能動型SOC構築支援サービス」を提供開始 〜 現状アセスメントから運用定着、専門人材育成までワンストップで支援 〜 T2 […]' },
+      ],
+      company: [
+        { k: '会社名', v: 'T2サミットソリューションズ合同会社(T2ss)' },
+        { k: '代表者名', v: '代表社員 宮本 敏匡 (Toshimasa MIYAMOTO)' },
+        { k: '所在地', v: '東京都目黒区自由が丘1丁目16－18' },
+        { k: 'TEL', v: '070-3163-3020' },
+        { k: '設立', v: '2025年2月14日' },
+        { k: '資本金', v: '10,000,000円' },
+        { k: 'パートナー資格', v: 'Summit Grop(サミットグループ)コアパートナー' },
+        { k: '事業内容', v: '◇セキュリティソリューション\n◇セキュリティコンサル＆ツール導入\n◇ITエンジニア提供サービス\n◇プロジェクトマネジメントサービス' },
+        { k: '主な提携先', v: '株式会社アイデータ\n株式会社イーセター\n株式会社アリス\n株式会社エム・アール・オー\n株式会社クロスロード\n株式会社システムズエンジニアリング\n株式会社セキュリティエキスパート株式会社\nSummit Grop(サミットグループ)\n株式会社ネクス\n株式会社ソルパック\n株式会社ソリューションズ株式会社\n株式会社フレンズシステムコンサルティング\n株式会社ブレインズ\nミツイ情報株式会社\n株式会社ミツイ合同会社\n株式会社FCN\nFITEC株式会社\nGHコンサルティング株式会社' },
+      ],
+      recruit: [
+        { k: '雇用形態', v: '正社員及び契約社員 ※試用期間6ケ月後正式採用予定' },
+        { k: '採用予定人数', v: '若干名' },
+        { k: '業務内容', v: '□主な仕事内容\n✔ お客様視点での現状分析～構想立案～実施計画立案迄\n　＊業務面/IT面、両面でのアプローチ\n　＊RFP/RFI作成～ベンダ選定支援\n✔ 各業種のIT導入プロジェクトマネージメント\n✔ ERP/各パッケージ/スクラッチ開発プロジェクトマネージメント' },
+        { k: '必要な経験等', v: '【必須】\n１．IT業界経験3年以上\n【尚可】\n２．以下の業務経験・知識をお持ちの方\n1）上流コンサル(要件定義支援)\n　＊製造業、流通、金融業界経験者は歓迎\n　＊ERP導入経験者は歓\n　例：SAP/Dynamics365/IFS/GRANDIT/STRAMMIC/OracleCould 等\n2）プロジェクトマネージメント(PM)\n　＊システム設計、導入、運用等\n　＊ERP導入経験者は歓\n　例：SAP/Dynamics365/IFS/GRANDIT/STRAMMIC/OracleCould 等\n3）プロジェクトマネージメントオフィサー(PMO)\n　＊システム設計、導入、運用等\n　＊ERP導入経験者は歓迎\n　例：SAP/Dynamics365/IFS/GRANDIT/STRAMMIC/OracleCould 等\n　＊Servoe Now, Sales Force導入経験者は歓迎\n4）システムエンジニア(SE)\n　＊開発経験(Java,C＃、.Net系、Python,PHP,SQL Server 等)\n　＊上記の経験3年以上だと尚歓迎\n　＊未経験でも、独学の意欲のある方も歓迎' },
+        { k: '勤務地', v: '東京都港区（虎ノ門） / 在宅ワーク可(日数は相談の上確定)' },
+        { k: '勤務時間', v: '通常9:00～18:00（1h休憩）参考、個別相談による' },
+        { k: '待遇', v: '東京都・各種社会保険（雇用・労災・健康・厚生年金）\n・交通費全額支給\n・社内規定に準じ、提携都内大学/大学院に編入制度あり\n・個々に応じた働き方により就労可能港区（虎ノ門） / 在宅ワーク可(日数は相談の上確定)' },
+        { k: '給与', v: '¥50,000/月より上限なし\nご自身の能力、働き方により相談' },
+        { k: '資格', v: '不問、ビジネス英語可能尚歓迎' },
+        { k: '学歴', v: '不問' },
+        { k: '副業', v: '可' },
+      ],
+    };
+  }
+  scrollServices() {
+    const el = this.servicesRef.current;
+    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 72, behavior: 'smooth' });
+  }
+}
+</script>
+</body>
+</html>

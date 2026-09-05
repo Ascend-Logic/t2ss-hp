@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <script src="./image-slot.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    html, body { margin: 0; background: #f5f6f8; }
+    body { font-family: "Poppins", "Noto Sans JP", system-ui, sans-serif; color: #1b3a5f; }
+    a { color: #1b3a5f; text-decoration: none; }
+    a:hover { color: #7c5cd6; }
+    @keyframes scrollLine { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }
+  </style>
+</helmet>
+<div style="min-height:100vh;background-color:#f5f6f8;background-image:radial-gradient(#cfd4dc 1.2px, transparent 1.2px);background-size:22px 22px;color:#1b3a5f;font-family:'Poppins','Noto Sans JP',system-ui,sans-serif;display:flex;flex-direction:column;overflow-x:clip">
+
+  <header style="position:sticky;top:0;z-index:20;padding:18px 32px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px 24px;background:linear-gradient(180deg, rgba(245,246,248,0.96), rgba(245,246,248,0.7) 70%, rgba(245,246,248,0))">
+    <a href="#" onClick="{{ goHome }}" style="display:flex;align-items:center;gap:16px;color:#1b3a5f">
+      <span style="position:relative;width:60px;height:60px;flex:none">
+        <span style="position:absolute;inset:0;border-radius:50%;border:9px solid #1fb0e8"></span>
+        <span style="position:absolute;inset:14px;border-radius:50%;border:8px solid #7c5cd6;border-right-color:transparent;transform:rotate(-40deg)"></span>
+      </span>
+      <span style="display:flex;flex-direction:column;line-height:1.25">
+        <span style="font-size:17px;font-weight:700;letter-spacing:0.01em">T2サミットソリューションズ合同会社</span>
+        <span style="font-size:12px;color:#4a5f78;letter-spacing:0.02em">お客様と共に頂上をめざす</span>
+      </span>
+    </a>
+    <nav style="order:3;flex:1 1 100%;justify-content:center;display:flex;gap:clamp(20px,3vw,40px);align-items:center;background:#fff;border-radius:999px;padding:14px 36px;box-shadow:0 8px 30px rgba(27,58,95,0.08);white-space:nowrap;margin:0 auto;width:max-content;max-width:100%">
+      <a href="#" onClick="{{ goHome }}" style="display:flex;gap:10px;align-items:flex-start;color:#1b3a5f"><span style="width:9px;height:9px;border-radius:50%;background: {{ homeDot }};margin-top:9px;flex:none"></span><span style="display:flex;flex-direction:column"><span style="font-size:20px;font-weight:600;line-height:1.2">Home</span><span style="font-size:12px;font-weight:700;color:#3b5273">ホーム</span></span></a>
+      <a href="#" onClick="{{ goNews }}" style="display:flex;gap:10px;align-items:flex-start;color:#1b3a5f"><span style="width:9px;height:9px;border-radius:50%;background: {{ newsDot }};margin-top:9px;flex:none"></span><span style="display:flex;flex-direction:column"><span style="font-size:20px;font-weight:600;line-height:1.2">News</span><span style="font-size:12px;font-weight:700;color:#3b5273">お知らせ</span></span></a>
+      <a href="#" onClick="{{ goCompany }}" style="display:flex;gap:10px;align-items:flex-start;color:#1b3a5f"><span style="width:9px;height:9px;border-radius:50%;background: {{ companyDot }};margin-top:9px;flex:none"></span><span style="display:flex;flex-direction:column"><span style="font-size:20px;font-weight:600;line-height:1.2">Company</span><span style="font-size:12px;font-weight:700;color:#3b5273">会社概要</span></span></a>
+      <a href="#" onClick="{{ goServices }}" style="display:flex;gap:10px;align-items:flex-start;color:#1b3a5f"><span style="width:9px;height:9px;border-radius:50%;background:#1b3a5f;margin-top:9px;flex:none"></span><span style="display:flex;flex-direction:column"><span style="font-size:20px;font-weight:600;line-height:1.2">Service</span><span style="font-size:12px;font-weight:700;color:#3b5273">事業概要</span></span></a>
+    </nav>
+    <div style="display:flex;gap:14px;align-items:center">
+      <a href="mailto:info@t2tss.com" style="background:#7c5cd6;color:#fff;font-size:15px;font-weight:600;letter-spacing:0.06em;padding:20px 44px;border-radius:999px;box-shadow:0 10px 24px rgba(124,92,214,0.3)" style-hover="background:#6a4bc4;color:#fff">CONTACT</a>
+      <a href="#" onClick="{{ goRecruit }}" style="background:#1fb0e8;color:#fff;font-size:15px;font-weight:600;letter-spacing:0.06em;padding:20px 40px;border-radius:999px;box-shadow:0 10px 24px rgba(31,176,232,0.3);display:inline-flex;gap:10px;align-items:center" style-hover="background:#139fd6;color:#fff">RECRUIT</a>
+    </div>
+  </header>
+
+  <main style="flex:1">
+
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+    <section data-screen-label="Home hero" style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr));align-items:center;overflow:hidden">
+      <div style="position:absolute;left:-10%;top:-30%;width:70vw;height:70vw;border-radius:50%;border:1px solid rgba(27,58,95,0.06);pointer-events:none"></div>
+      <div style="position:absolute;left:0;top:-15%;width:55vw;height:55vw;border-radius:50%;background:rgba(255,255,255,0.7);pointer-events:none"></div>
+      <div style="position:absolute;left:44%;top:-25%;width:36vw;height:36vw;border-radius:50%;background:#dcd2f7;pointer-events:none"></div>
+      <div style="position:relative;z-index:2;padding:60px 32px 80px clamp(32px,8vw,140px)">
+        <h1 style="margin:0 0 44px;font-size:clamp(26px,3.6vw,64px);line-height:1.35;letter-spacing:0.04em;font-weight:700;word-break:keep-all;overflow-wrap:anywhere">
+          <span style="display:block;color:#1b3a5f">「T2サミット</span>
+          <span style="display:block;background:linear-gradient(90deg, #1b3a5f 0%, #5a4a9c 45%, #9a6fd8 100%);-webkit-background-clip:text;background-clip:text;color:transparent">ソリューションズ合同会社</span>
+          <span style="display:block;background:linear-gradient(90deg, #4f4a8f 0%, #8d6bd0 100%);-webkit-background-clip:text;background-clip:text;color:transparent">(T2SS)」へようこそ</span>
+        </h1>
+        <p style="margin:0;font-size:clamp(15px,1.25vw,19px);line-height:2.4;font-weight:700;letter-spacing:0.06em;color:#1b3a5f;text-wrap:pretty">T2SS では、“お客様と共に頂上をめざす”というビジョンを掲げ、以下のビジネスを主軸としまして、お客様の事業成長を支える一員となる事を目指しております。</p>
+        <p style="margin:12px 0 0;font-size:clamp(15px,1.25vw,19px);line-height:2.4;font-weight:700;letter-spacing:0.06em;color:#1b3a5f;text-wrap:pretty">IT関連のみならず、業務効率化などのお悩みをお持ちの企業の皆様、一度ご連絡下さい。</p>
+        <ul style="list-style:none;margin:28px 0 0;padding:0;display:flex;flex-direction:column;gap:10px;font-size:16px;font-weight:700;letter-spacing:0.04em">
+          <li style="display:flex;align-items:center;gap:12px"><span style="width:10px;height:10px;border-radius:50%;background:#7c5cd6"></span>セキュリティソリューション</li>
+          <li style="display:flex;align-items:center;gap:12px"><span style="width:10px;height:10px;border-radius:50%;background:#1fb0e8"></span>ITエンジニア提供サービス</li>
+          <li style="display:flex;align-items:center;gap:12px"><span style="width:10px;height:10px;border-radius:50%;background:#5a4a9c"></span>IT関連全般のサービス事業</li>
+        </ul>
+        <a href="mailto:info@t2tss.com" style="margin-top:44px;display:inline-flex;align-items:center;gap:14px;background:#7c5cd6;color:#fff;font-size:16px;font-weight:700;letter-spacing:0.06em;padding:22px 56px;border-radius:999px;box-shadow:0 12px 30px rgba(124,92,214,0.32)" style-hover="background:#6a4bc4;color:#fff">お問い合わせ　→</a>
+      </div>
+      <div style="position:relative;z-index:1;height:100%;min-height:min(640px,70vw)">
+        <div style="position:absolute;inset:0 0 0 0;border-radius:50% 0 0 50% / 100% 0 0 100%;overflow:hidden;clip-path:ellipse(120% 120% at 100% 50%);background:linear-gradient(135deg, #cfe9f7, #e3d9fb)">
+          <image-slot id="v3-hero" shape="rect" placeholder="メインビジュアル（テクノロジー／手元の写真）"></image-slot>
+          <div style="position:absolute;inset:0;background:linear-gradient(90deg, rgba(245,246,248,0.9) 0%, rgba(245,246,248,0) 35%);pointer-events:none"></div>
+        </div>
+        <span style="position:absolute;right:40%;bottom:8%;width:60%;height:10px;border-radius:999px;background:linear-gradient(90deg, #7c5cd6, #1fb0e8);opacity:0.55;transform:rotate(-32deg);pointer-events:none"></span>
+        <span style="position:absolute;right:6%;top:58%;width:220px;height:22px;border-radius:999px;background:linear-gradient(90deg, #7c5cd6, #c1aef2);opacity:0.6;transform:rotate(-32deg);pointer-events:none"></span>
+      </div>
+      <div style="position:absolute;right:26px;bottom:60px;writing-mode:vertical-rl;font-size:13px;letter-spacing:0.14em;color:#1b3a5f;z-index:3">© 2026 T2 Summit Solutions LLC.</div>
+      <div style="position:absolute;left:32px;bottom:40px;z-index:3;display:flex;flex-direction:column;align-items:center;gap:10px;font-size:11px;letter-spacing:0.22em;color:#1b3a5f;font-weight:600"><span style="writing-mode:vertical-rl">SCROLL</span><span style="width:1px;height:56px;background:#c9cfd8;overflow:hidden;position:relative">{{ scrollBar }}</span></div>
+    </section>
+
+    <section style="position:relative;padding:40px 32px 20px">
+      <div style="max-width:1240px;margin:0 auto;background:#fff;border-radius:28px;box-shadow:0 14px 40px rgba(27,58,95,0.08);padding:36px 48px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px 56px;align-items:center">
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-size:34px;font-weight:700;letter-spacing:0.04em;color:#1b3a5f">NEWS</span>
+          <span style="font-size:13px;font-weight:700;color:#7c5cd6">お知らせ</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <sc-for list="{{ news }}" as="n" hint-placeholder-count="2">
+            <a href="{{ n.url }}" style="display:grid;grid-template-columns:110px minmax(0,1fr);gap:24px;padding:14px 0;align-items:baseline;color:#1b3a5f;border-bottom:1px solid #e9ecf1" style-hover="color:#7c5cd6">
+              <time style="font-size:15px;font-weight:600;letter-spacing:0.04em;color:#7c5cd6">{{ n.date }}</time>
+              <span style="font-size:17px;font-weight:700;line-height:1.6;text-wrap:pretty">{{ n.title }}</span>
+            </a>
+          </sc-for>
+          <a href="#" onClick="{{ goNews }}" style="align-self:flex-end;margin-top:8px;font-size:13px;font-weight:700;letter-spacing:0.1em;color:#1fb0e8" style-hover="color:#7c5cd6">VIEW MORE →</a>
+        </div>
+      </div>
+    </section>
+
+    <section style="position:relative;padding:100px 32px;overflow:hidden">
+      <div style="position:absolute;right:-10%;top:-20%;width:60vw;height:60vw;border-radius:50%;background:rgba(255,255,255,0.8);pointer-events:none"></div>
+      <div style="position:relative;max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px;align-items:center">
+        <div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:36px">
+            <span style="font-size:clamp(28px,2.6vw,38px);font-weight:700;letter-spacing:0.06em">T2SSが提供できること</span>
+            <span style="font-size:14px;font-weight:700;letter-spacing:0.14em;color:#7c5cd6">ABOUT US</span>
+          </div>
+          <h2 style="margin:0 0 32px;font-size:clamp(26px,2.4vw,36px);line-height:1.5;letter-spacing:0.06em;font-weight:700;background:linear-gradient(90deg, #1b3a5f, #5a4a9c 60%, #9a6fd8);-webkit-background-clip:text;background-clip:text;color:transparent">“お客様と共に頂上をめざす”</h2>
+          <p style="margin:0 0 36px;font-size:16px;line-height:2.3;font-weight:500;letter-spacing:0.04em;color:#2c4a6d;text-wrap:pretty">T2SS では、“お客様と共に頂上をめざす”というビジョンを掲げ、以下のビジネスを主軸としまして、お客様の事業成長を支える一員となる事を目指しております。<br>IT関連のみならず、業務効率化などのお悩みをお持ちの企業の皆様、一度ご連絡下さい。</p>
+          <ul style="list-style:none;margin:0 0 40px;padding:0;display:flex;flex-direction:column;gap:12px;font-size:17px;font-weight:700;letter-spacing:0.04em">
+            <li style="display:flex;align-items:center;gap:14px"><span style="color:#7c5cd6">◆</span>セキュリティソリューション</li>
+            <li style="display:flex;align-items:center;gap:14px"><span style="color:#1fb0e8">◆</span>ITエンジニア提供サービス</li>
+            <li style="display:flex;align-items:center;gap:14px"><span style="color:#5a4a9c">◆</span>IT関連全般のサービス事業</li>
+          </ul>
+          <a href="#" onClick="{{ goCompany }}" style="display:inline-flex;align-items:center;background:#7c5cd6;color:#fff;font-size:14px;font-weight:700;letter-spacing:0.14em;padding:20px 52px;border-radius:999px;box-shadow:0 12px 30px rgba(124,92,214,0.3)" style-hover="background:#6a4bc4;color:#fff">VIEW MORE</a>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:start;min-width:0">
+          <div style="display:flex;flex-direction:column;gap:18px;padding-top:60px;min-width:0">
+            <div style="height:220px;min-width:0;position:relative;border-radius:22px;overflow:hidden;box-shadow:0 12px 30px rgba(27,58,95,0.12)"><image-slot id="v3-about-1" shape="rect" placeholder="職場の写真 01"></image-slot></div>
+            <div style="height:220px;min-width:0;position:relative;border-radius:22px;overflow:hidden;box-shadow:0 12px 30px rgba(27,58,95,0.12)"><image-slot id="v3-about-2" shape="rect" placeholder="職場の写真 02"></image-slot></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:18px;min-width:0">
+            <div style="height:220px;min-width:0;position:relative;border-radius:22px;overflow:hidden;box-shadow:0 12px 30px rgba(27,58,95,0.12)"><image-slot id="v3-about-3" shape="rect" placeholder="職場の写真 03"></image-slot></div>
+            <div style="height:220px;min-width:0;position:relative;border-radius:22px;overflow:hidden;box-shadow:0 12px 30px rgba(27,58,95,0.12)"><image-slot id="v3-about-4" shape="rect" placeholder="職場の写真 04"></image-slot></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:18px;padding-top:120px;min-width:0">
+            <div style="height:220px;min-width:0;position:relative;border-radius:22px;overflow:hidden;box-shadow:0 12px 30px rgba(27,58,95,0.12)"><image-slot id="v3-about-5" shape="rect" placeholder="職場の写真 05"></image-slot></div>
+            <div style="height:220px;min-width:0;position:relative;border-radius:22px;overflow:hidden;box-shadow:0 12px 30px rgba(27,58,95,0.12)"><image-slot id="v3-about-6" shape="rect" placeholder="職場の写真 06"></image-slot></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section ref="{{ servicesRef }}" style="position:relative;padding:100px 32px;background:linear-gradient(180deg, #ffffff 0%, #eef6fb 100%);border-radius:80px 80px 0 0;overflow:hidden">
+      <div style="position:absolute;left:-8%;bottom:-30%;width:40vw;height:40vw;border-radius:50%;background:#dbeffa;pointer-events:none"></div>
+      <div style="position:relative;max-width:1240px;margin:0 auto">
+        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:56px">
+          <span style="font-size:clamp(28px,2.6vw,38px);font-weight:700;letter-spacing:0.06em">T2SSのサービス</span>
+          <span style="font-size:14px;font-weight:700;letter-spacing:0.14em;color:#7c5cd6">SERVICE ／ 事業概要</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px">
+          <div style="background:#fff;border-radius:28px;padding:44px;box-shadow:0 14px 40px rgba(27,58,95,0.08);display:flex;flex-direction:column;gap:22px">
+            <div style="width:160px;height:160px;position:relative;border-radius:24px;overflow:hidden;align-self:center"><image-slot id="v3-svc-1" shape="rect" placeholder="イラスト 01"></image-slot></div>
+            <span style="font-size:13px;font-weight:700;letter-spacing:0.16em;color:#7c5cd6">SERVICE.01</span>
+            <h3 style="margin:0;font-size:26px;font-weight:700;letter-spacing:0.04em;line-height:1.5">セキュリティソリューション事業</h3>
+            <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;font-size:16px;font-weight:500;line-height:1.8;color:#2c4a6d">
+              <li>・セキュリティコンサルサービス</li>
+              <li>・脆弱性診断サービス<br><span style="color:#6a7f99">（Web/プラットフォーム）</span></li>
+              <li>・モバイルアプリ診断</li>
+              <li>・WAF＋簡易SOCサービス 他</li>
+            </ul>
+          </div>
+          <div style="background:#fff;border-radius:28px;padding:44px;box-shadow:0 14px 40px rgba(27,58,95,0.08);display:flex;flex-direction:column;gap:22px">
+            <div style="width:160px;height:160px;position:relative;border-radius:24px;overflow:hidden;align-self:center"><image-slot id="v3-svc-2" shape="rect" placeholder="イラスト 02"></image-slot></div>
+            <span style="font-size:13px;font-weight:700;letter-spacing:0.16em;color:#1fb0e8">SERVICE.02</span>
+            <h3 style="margin:0;font-size:26px;font-weight:700;letter-spacing:0.04em;line-height:1.5">ITエンジニア提供事業</h3>
+            <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;font-size:16px;font-weight:500;line-height:1.8;color:#2c4a6d">
+              <li>・プロジェクトマネジメント</li>
+              <li>・オープン系技術者の提供</li>
+              <li>・Web系技術者の提供</li>
+              <li>・SAP他ERP導入エンジニアの提供 他</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="position:relative;padding:100px 32px;background:#eef6fb">
+      <div style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px;align-items:center">
+        <img src="https://t2tss.com/wp-content/uploads/2026/04/about-1-1.jpg" alt="" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:0 120px 0 120px;box-shadow:0 20px 50px rgba(27,58,95,0.15)">
+        <div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:36px">
+            <span style="font-size:clamp(28px,2.6vw,38px);font-weight:700;letter-spacing:0.06em">T2SSについて</span>
+            <span style="font-size:14px;font-weight:700;letter-spacing:0.14em;color:#7c5cd6">COMPANY ／ About us</span>
+          </div>
+          <address style="font-style:normal;font-size:17px;line-height:2.3;font-weight:500;letter-spacing:0.04em;color:#2c4a6d;margin:0 0 40px">
+            〒152-0035東京都目黒区自由が丘1丁目16-18<br>
+            T2サミットソリューションズ合同会社<br>
+            TEL: 070-3163-3020<br>
+            MAIL：info@t2tss.com
+          </address>
+          <a href="#" onClick="{{ goCompany }}" style="display:inline-flex;align-items:center;background:#7c5cd6;color:#fff;font-size:14px;font-weight:700;letter-spacing:0.14em;padding:20px 52px;border-radius:999px;box-shadow:0 12px 30px rgba(124,92,214,0.3)" style-hover="background:#6a4bc4;color:#fff">READ MORE</a>
+        </div>
+      </div>
+    </section>
+
+    <section style="position:relative;padding:100px 32px 120px;background:#eef6fb;overflow:hidden">
+      <div style="position:absolute;right:-6%;top:-10%;width:36vw;height:36vw;border-radius:50%;background:#dcd2f7;opacity:0.7;pointer-events:none"></div>
+      <div style="position:relative;max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px;align-items:center">
+        <div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:28px">
+            <span style="font-size:clamp(28px,2.6vw,38px);font-weight:700;letter-spacing:0.06em">採用情報</span>
+            <span style="font-size:14px;font-weight:700;letter-spacing:0.14em;color:#1fb0e8">RECRUIT</span>
+          </div>
+          <h2 style="margin:0 0 12px;font-size:clamp(26px,2.6vw,40px);font-weight:700;letter-spacing:0.04em;background:linear-gradient(90deg, #1b3a5f, #1fb0e8);-webkit-background-clip:text;background-clip:text;color:transparent">Let's Work Together!</h2>
+          <h3 style="margin:0 0 20px;font-size:22px;font-weight:700;letter-spacing:0.04em">募集職種：IT関連</h3>
+          <p style="margin:0 0 36px;font-size:16px;line-height:2.2;font-weight:500;color:#2c4a6d">正社員及び契約社員 ※試用期間6ケ月後正式採用予定<br>勤務地：東京都港区（虎ノ門） / 在宅ワーク可(日数は相談の上確定)</p>
+          <a href="#" onClick="{{ goRecruit }}" style="display:inline-flex;align-items:center;background:#1fb0e8;color:#fff;font-size:14px;font-weight:700;letter-spacing:0.14em;padding:20px 52px;border-radius:999px;box-shadow:0 12px 30px rgba(31,176,232,0.3)" style-hover="background:#139fd6;color:#fff">VIEW MORE</a>
+        </div>
+        <div style="height:420px;position:relative;border-radius:120px 0 120px 0;overflow:hidden;box-shadow:0 20px 50px rgba(27,58,95,0.15)"><image-slot id="v3-recruit" shape="rect" placeholder="採用イメージ写真"></image-slot></div>
+      </div>
+    </section>
+
+    <section style="padding:0 32px 100px;background:#eef6fb">
+      <div style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px">
+        <a href="mailto:info@t2tss.com" style="display:flex;align-items:center;justify-content:space-between;gap:24px;background:linear-gradient(120deg, #7c5cd6, #a98ff0);color:#fff;border-radius:28px;padding:44px 52px;box-shadow:0 16px 40px rgba(124,92,214,0.3)" style-hover="color:#fff;transform:translateY(-3px)">
+          <span style="display:flex;flex-direction:column;gap:6px"><span style="font-size:32px;font-weight:700;letter-spacing:0.08em">CONTACT</span><span style="font-size:15px;font-weight:700">お問い合わせ　info@t2tss.com</span></span>
+          <span style="font-size:36px">→</span>
+        </a>
+        <a href="#" onClick="{{ goRecruit }}" style="display:flex;align-items:center;justify-content:space-between;gap:24px;background:linear-gradient(120deg, #1fb0e8, #6dcdf3);color:#fff;border-radius:28px;padding:44px 52px;box-shadow:0 16px 40px rgba(31,176,232,0.3)" style-hover="color:#fff;transform:translateY(-3px)">
+          <span style="display:flex;flex-direction:column;gap:6px"><span style="font-size:32px;font-weight:700;letter-spacing:0.08em">RECRUIT</span><span style="font-size:15px;font-weight:700">採用情報　Recruitment</span></span>
+          <span style="font-size:36px">→</span>
+        </a>
+      </div>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ isNews }}" hint-placeholder-val="{{ false }}">
+    <section data-screen-label="お知らせ" style="padding:60px 32px 120px">
+      <div style="max-width:1100px;margin:0 auto">
+        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:56px">
+          <span style="font-size:clamp(32px,3vw,48px);font-weight:700;letter-spacing:0.06em">お知らせ</span>
+          <span style="font-size:14px;font-weight:700;letter-spacing:0.14em;color:#7c5cd6">NEWS</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:24px">
+          <sc-for list="{{ newsFull }}" as="n" hint-placeholder-count="2">
+            <article style="background:#fff;border-radius:28px;box-shadow:0 14px 40px rgba(27,58,95,0.08);padding:40px 48px;display:grid;grid-template-columns:minmax(120px,160px) minmax(0,1fr);gap:16px 40px;align-items:start">
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <time style="font-size:22px;font-weight:700;letter-spacing:0.04em;color:#7c5cd6;line-height:1.2">{{ n.date }}</time>
+                <span style="font-size:13px;font-weight:600;color:#6a7f99">{{ n.time }}</span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
+                <a href="{{ n.url }}" style="font-size:22px;font-weight:700;line-height:1.6;letter-spacing:0.02em;color:#1b3a5f;text-wrap:pretty" style-hover="color:#7c5cd6">{{ n.title }}</a>
+                <p style="margin:0;font-size:15.5px;line-height:2;font-weight:500;color:#2c4a6d;text-wrap:pretty">{{ n.excerpt }}</p>
+                <a href="{{ n.url }}" style="align-self:flex-start;display:inline-flex;align-items:center;background:#7c5cd6;color:#fff;font-size:13px;font-weight:700;letter-spacing:0.12em;padding:14px 36px;border-radius:999px;box-shadow:0 10px 24px rgba(124,92,214,0.3)" style-hover="background:#6a4bc4;color:#fff">READ MORE</a>
+              </div>
+            </article>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ isCompany }}" hint-placeholder-val="{{ false }}">
+    <section data-screen-label="会社概要" style="padding:60px 32px 120px">
+      <div style="max-width:1100px;margin:0 auto">
+        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:40px">
+          <span style="font-size:clamp(32px,3vw,48px);font-weight:700;letter-spacing:0.06em">会社概要</span>
+          <span style="font-size:14px;font-weight:700;letter-spacing:0.14em;color:#7c5cd6">COMPANY</span>
+        </div>
+        <p style="margin:0 0 56px;font-size:17px;line-height:2.2;font-weight:500;letter-spacing:0.04em;color:#2c4a6d;max-width:760px;text-wrap:pretty">T2SS では、“お客様と共に頂上をめざす”というビジョンを掲げ、以下のビジネスを主軸としまして、お客様の事業成長を支える一員となる事を目指しております。</p>
+        <dl style="margin:0;background:#fff;border-radius:28px;box-shadow:0 14px 40px rgba(27,58,95,0.08);padding:16px 48px">
+          <sc-for list="{{ company }}" as="row" hint-placeholder-count="9">
+            <div style="display:grid;grid-template-columns:minmax(120px,200px) minmax(0,1fr);gap:24px;padding:24px 0;border-bottom:1px solid #e9ecf1">
+              <dt style="font-size:15px;font-weight:700;color:#7c5cd6;letter-spacing:0.04em;padding-top:2px">{{ row.k }}</dt>
+              <dd style="margin:0;font-size:16px;line-height:1.9;font-weight:500;white-space:pre-line;color:#1b3a5f">{{ row.v }}</dd>
+            </div>
+          </sc-for>
+        </dl>
+      </div>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ isRecruit }}" hint-placeholder-val="{{ false }}">
+    <section data-screen-label="Recruitment" style="padding:60px 32px 120px">
+      <div style="max-width:1100px;margin:0 auto">
+        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:40px">
+          <span style="font-size:clamp(32px,3vw,48px);font-weight:700;letter-spacing:0.06em">採用情報</span>
+          <span style="font-size:14px;font-weight:700;letter-spacing:0.14em;color:#1fb0e8">RECRUIT</span>
+        </div>
+        <h1 style="margin:0 0 56px;font-size:clamp(24px,2.4vw,34px);font-weight:700;letter-spacing:0.04em">募集職種：IT関連</h1>
+        <dl style="margin:0;background:#fff;border-radius:28px;box-shadow:0 14px 40px rgba(27,58,95,0.08);padding:16px 48px">
+          <sc-for list="{{ recruit }}" as="row" hint-placeholder-count="10">
+            <div style="display:grid;grid-template-columns:minmax(120px,200px) minmax(0,1fr);gap:24px;padding:24px 0;border-bottom:1px solid #e9ecf1">
+              <dt style="font-size:15px;font-weight:700;color:#1fb0e8;letter-spacing:0.04em;padding-top:2px">{{ row.k }}</dt>
+              <dd style="margin:0;font-size:16px;line-height:1.9;font-weight:500;white-space:pre-line;color:#1b3a5f">{{ row.v }}</dd>
+            </div>
+          </sc-for>
+        </dl>
+      </div>
+    </section>
+  </sc-if>
+
+  </main>
+
+  <footer style="background:#1b3a5f;color:#fff">
+    <div style="max-width:1240px;margin:0 auto;padding:64px 32px 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:48px">
+      <div>
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px">
+          <span style="position:relative;width:44px;height:44px;flex:none">
+            <span style="position:absolute;inset:0;border-radius:50%;border:7px solid #1fb0e8"></span>
+            <span style="position:absolute;inset:10px;border-radius:50%;border:6px solid #7c5cd6;border-right-color:transparent;transform:rotate(-40deg)"></span>
+          </span>
+          <span style="font-size:17px;font-weight:700">T2サミットソリューションズ合同会社</span>
+        </div>
+        <address style="font-style:normal;font-size:14px;line-height:2.1;color:#c9d6e6;margin:0">
+          〒152-0035東京都目黒区自由が丘1丁目16-18<br>
+          TEL: 070-3163-3020<br>
+          MAIL：<a href="mailto:info@t2tss.com" style="color:#fff" style-hover="color:#a98ff0">info@t2tss.com</a>
+        </address>
+      </div>
+      <nav style="display:grid;grid-template-columns:1fr 1fr;gap:14px 24px;font-size:14px;font-weight:600;align-content:start">
+        <a href="#" onClick="{{ goHome }}" style="color:#fff" style-hover="color:#a98ff0">Home ／ ホーム</a>
+        <a href="#" onClick="{{ goNews }}" style="color:#fff" style-hover="color:#a98ff0">News ／ お知らせ</a>
+        <a href="#" onClick="{{ goCompany }}" style="color:#fff" style-hover="color:#a98ff0">Company ／ 会社概要</a>
+        <a href="#" onClick="{{ goServices }}" style="color:#fff" style-hover="color:#a98ff0">Service ／ 事業概要</a>
+        <a href="#" onClick="{{ goRecruit }}" style="color:#fff" style-hover="color:#a98ff0">Recruitment</a>
+      </nav>
+    </div>
+    <div style="max-width:1240px;margin:0 auto;padding:0 32px 28px;font-size:12px;color:#8fa6c0;letter-spacing:0.04em">© 2026 T2サミットソリューションズ合同会社</div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;page&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;news&quot;,&quot;company&quot;,&quot;recruit&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;'home'|'news'|'company'|'recruit'&quot;,&quot;section&quot;:&quot;表示ページ&quot;}}">
+class Component extends DCLogic {
+  state = { page: null };
+  servicesRef = React.createRef();
+  go(page) { return (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ page }); window.scrollTo(0, 0); }; }
+  scrollServices() {
+    const el = this.servicesRef.current;
+    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth' });
+  }
+  renderVals() {
+    const page = this.state.page ?? this.props.page ?? 'home';
+    const goServices = (e) => {
+      e.preventDefault();
+      if (page !== 'home') this.setState({ page: 'home' }, () => setTimeout(() => this.scrollServices(), 50));
+      else this.scrollServices();
+    };
+    const scrollBar = React.createElement('span', { style: { position: 'absolute', inset: 0, background: '#7c5cd6', animation: 'scrollLine 1.8s ease-in-out infinite' } });
+    return {
+      isHome: page === 'home', isCompany: page === 'company', isRecruit: page === 'recruit', isNews: page === 'news',
+      homeDot: page === 'home' ? '#7c5cd6' : '#1b3a5f',
+      companyDot: page === 'company' ? '#7c5cd6' : '#1b3a5f',
+      newsDot: page === 'news' ? '#7c5cd6' : '#1b3a5f',
+      goHome: this.go('home'), goCompany: this.go('company'), goRecruit: this.go('recruit'), goNews: this.go('news'), goServices,
+      newsFull: [
+        { date: '2026.06.22', time: '9:08 AM', url: 'https://t2tss.com/2026/06/22/%e3%83%ac%e3%82%a4%e3%83%b3%e3%83%95%e3%82%a9%e3%83%ac%e3%82%b9%e3%83%88%e3%81%a8t2%e3%82%b5%e3%83%9f%e3%83%83%e3%83%88%e3%82%bd%e3%83%aa%e3%83%a5%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%e3%82%ba%e3%80%81/',
+          title: 'レインフォレストとT2サミットソリューションズ、MCPを活用した安全な生成AIインテグレーション「AI実装支援サービス」を共同提供開始',
+          excerpt: '「コアシステムには触れず、業務を劇的に変える」 レインフォレストとT2サミットソリューションズ、MCPを活用した安全な生成AIインテグレーション「AI実装支援サービス」を共同提供開始 株式会社レインフォレスト（本社：東京 […]' },
+        { date: '2026.04.19', time: '1:28 AM', url: 'https://t2tss.com/2026/04/19/%e5%b7%a7%e5%a6%99%e5%8c%96%e3%81%99%e3%82%8b%e3%82%b5%e3%82%a4%e3%83%90%e3%83%bc%e6%94%bb%e6%92%83%e3%81%ab%e5%af%be%e3%81%97%e3%81%a6%e3%80%8c%e4%ba%ba%e3%83%bb%e3%83%97%e3%83%ad%e3%82%bb%e3%82%b9/',
+          title: '能動型SOC構築支援サービスの提供開始',
+          excerpt: '巧妙化するサイバー攻撃を「人・プロセス・テクノロジー」を融合し防御する 自律的に防御力を最大化する「能動型SOC構築支援サービス」を提供開始 〜 現状アセスメントから運用定着、専門人材育成までワンストップで支援 〜 T2 […]' },
+      ],
+      servicesRef: this.servicesRef, scrollBar,
+      news: [
+        { date: '2026.06.22', url: 'https://t2tss.com/2026/06/22/%e3%83%ac%e3%82%a4%e3%83%b3%e3%83%95%e3%82%a9%e3%83%ac%e3%82%b9%e3%83%88%e3%81%a8t2%e3%82%b5%e3%83%9f%e3%83%83%e3%83%88%e3%82%bd%e3%83%aa%e3%83%a5%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%e3%82%ba%e3%80%81/',
+          title: 'レインフォレストとT2サミットソリューションズ、MCPを活用した安全な生成AIインテグレーション「AI実装支援サービス」を共同提供開始' },
+        { date: '2026.04.19', url: 'https://t2tss.com/2026/04/19/%e5%b7%a7%e5%a6%99%e5%8c%96%e3%81%99%e3%82%8b%e3%82%b5%e3%82%a4%e3%83%90%e3%83%bc%e6%94%bb%e6%92%83%e3%81%ab%e5%af%be%e3%81%97%e3%81%a6%e3%80%8c%e4%ba%ba%e3%83%bb%e3%83%97%e3%83%ad%e3%82%bb%e3%82%b9/',
+          title: '能動型SOC構築支援サービスの提供開始' },
+      ],
+      company: [
+        { k: '会社名', v: 'T2サミットソリューションズ合同会社(T2ss)' },
+        { k: '代表者名', v: '代表社員 宮本 敏匡 (Toshimasa MIYAMOTO)' },
+        { k: '所在地', v: '東京都目黒区自由が丘1丁目16－18' },
+        { k: 'TEL', v: '070-3163-3020' },
+        { k: '設立', v: '2025年2月14日' },
+        { k: '資本金', v: '10,000,000円' },
+        { k: 'パートナー資格', v: 'Summit Grop(サミットグループ)コアパートナー' },
+        { k: '事業内容', v: '◇セキュリティソリューション\n◇セキュリティコンサル＆ツール導入\n◇ITエンジニア提供サービス\n◇プロジェクトマネジメントサービス' },
+        { k: '主な提携先', v: '株式会社アイデータ\n株式会社イーセター\n株式会社アリス\n株式会社エム・アール・オー\n株式会社クロスロード\n株式会社システムズエンジニアリング\n株式会社セキュリティエキスパート株式会社\nSummit Grop(サミットグループ)\n株式会社ネクス\n株式会社ソルパック\n株式会社ソリューションズ株式会社\n株式会社フレンズシステムコンサルティング\n株式会社ブレインズ\nミツイ情報株式会社\n株式会社ミツイ合同会社\n株式会社FCN\nFITEC株式会社\nGHコンサルティング株式会社' },
+      ],
+      recruit: [
+        { k: '雇用形態', v: '正社員及び契約社員 ※試用期間6ケ月後正式採用予定' },
+        { k: '採用予定人数', v: '若干名' },
+        { k: '業務内容', v: '□主な仕事内容\n✔ お客様視点での現状分析～構想立案～実施計画立案迄\n　＊業務面/IT面、両面でのアプローチ\n　＊RFP/RFI作成～ベンダ選定支援\n✔ 各業種のIT導入プロジェクトマネージメント\n✔ ERP/各パッケージ/スクラッチ開発プロジェクトマネージメント' },
+        { k: '必要な経験等', v: '【必須】\n１．IT業界経験3年以上\n【尚可】\n２．以下の業務経験・知識をお持ちの方\n1）上流コンサル(要件定義支援)\n　＊製造業、流通、金融業界経験者は歓迎\n　＊ERP導入経験者は歓\n　例：SAP/Dynamics365/IFS/GRANDIT/STRAMMIC/OracleCould 等\n2）プロジェクトマネージメント(PM)\n　＊システム設計、導入、運用等\n　＊ERP導入経験者は歓\n　例：SAP/Dynamics365/IFS/GRANDIT/STRAMMIC/OracleCould 等\n3）プロジェクトマネージメントオフィサー(PMO)\n　＊システム設計、導入、運用等\n　＊ERP導入経験者は歓迎\n　例：SAP/Dynamics365/IFS/GRANDIT/STRAMMIC/OracleCould 等\n　＊Servoe Now, Sales Force導入経験者は歓迎\n4）システムエンジニア(SE)\n　＊開発経験(Java,C＃、.Net系、Python,PHP,SQL Server 等)\n　＊上記の経験3年以上だと尚歓迎\n　＊未経験でも、独学の意欲のある方も歓迎' },
+        { k: '勤務地', v: '東京都港区（虎ノ門） / 在宅ワーク可(日数は相談の上確定)' },
+        { k: '勤務時間', v: '通常9:00～18:00（1h休憩）参考、個別相談による' },
+        { k: '待遇', v: '東京都・各種社会保険（雇用・労災・健康・厚生年金）\n・交通費全額支給\n・社内規定に準じ、提携都内大学/大学院に編入制度あり\n・個々に応じた働き方により就労可能港区（虎ノ門） / 在宅ワーク可(日数は相談の上確定)' },
+        { k: '給与', v: '¥50,000/月より上限なし\nご自身の能力、働き方により相談' },
+        { k: '資格', v: '不問、ビジネス英語可能尚歓迎' },
+        { k: '学歴', v: '不問' },
+        { k: '副業', v: '可' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
