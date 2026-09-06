@@ -1,0 +1,8 @@
+<svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg"><defs>
+  <linearGradient id="gA" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#cfe9f7"/><stop offset="1" stop-color="#e3d9fb"/></linearGradient>
+  <linearGradient id="gP" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7c5cd6"/><stop offset="1" stop-color="#1fb0e8"/></linearGradient>
+  <linearGradient id="gB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef6fb"/></linearGradient>
+</defs><rect width="320" height="320" fill="#1b3a5f"/><circle cx="60" cy="260" r="120" fill="#2c4a6d"/>
+<rect x="50" y="80" width="220" height="160" rx="18" fill="#fff" opacity=".95"/>
+<g fill="#1fb0e8"><circle cx="72" cy="102" r="5"/><circle cx="90" cy="102" r="5"/><circle cx="108" cy="102" r="5"/></g>
+<g stroke-linecap="round" stroke-width="10"><path d="M80 140 H150" stroke="#7c5cd6"/><path d="M100 170 H210" stroke="#cfd4dc"/><path d="M100 200 H170" stroke="#1fb0e8"/><path d="M80 200 H88" stroke="#7c5cd6"/></g></svg>
