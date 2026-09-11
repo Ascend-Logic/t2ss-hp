@@ -20,13 +20,9 @@ export function Footer() {
           </address>
         </div>
         <nav aria-label="フッターナビゲーション">
-          {footerNav.map((item) =>
-            item.href.startsWith("mailto:") ? (
-              <a key={item.href} href={item.href}>{item.label}</a>
-            ) : (
-              <Link key={item.href} href={item.href}>{item.label}</Link>
-            ),
-          )}
+          {footerNav.map((item) => (
+            <Link key={item.href} href={item.href}>{item.label}</Link>
+          ))}
         </nav>
       </div>
       <div className="wrap copy">© {new Date().getFullYear()} {site.name}</div>

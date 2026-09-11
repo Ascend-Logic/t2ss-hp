@@ -44,8 +44,6 @@ export const asset = (path: string) => `${basePath}${path}`;
 /** OGP 画像。ページごとの openGraph は layout の設定を丸ごと上書きするので、各ページで必ず渡す */
 export const ogImages = [{ url: "/img/logo.png", width: 1200, height: 1200, alt: site.name }];
 
-export const mailto = `mailto:${site.email}`;
-
 export const nav = [
   { href: "/", en: "Home", ja: "ホーム" },
   { href: "/news/", en: "News", ja: "お知らせ" },
@@ -59,7 +57,6 @@ export const footerNav = [
   { href: "/company/", label: "Company ／ 会社概要" },
   { href: "/#service", label: "Service ／ 事業概要" },
   { href: "/recruit/", label: "Recruitment ／ 採用情報" },
-  { href: mailto, label: "Contact ／ お問い合わせ" },
 ] as const;
 
 /** 3本柱。ヒーロー・About・Service カードで共通利用 */
