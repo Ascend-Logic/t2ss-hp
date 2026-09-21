@@ -126,7 +126,13 @@ export default function HomePage() {
                   {s.badge && (
                     <>
                       <br />
-                      <span className="svc-name">{s.badge}</span>
+                      {s.link?.external ? (
+                        <a className="svc-name" href={s.link.href} target="_blank" rel="noopener">
+                          {s.badge}
+                        </a>
+                      ) : (
+                        <span className="svc-name">{s.badge}</span>
+                      )}
                     </>
                   )}
                 </h3>
