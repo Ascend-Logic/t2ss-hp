@@ -269,6 +269,10 @@ ul { list-style: none; margin: 0; padding: 0; }
 .spec .row:last-child { border-bottom: 0; }
 .spec dt { font-size: 15px; font-weight: 700; color: var(--purple); letter-spacing: .04em; padding-top: 2px; }
 .spec.cyan dt { color: var(--cyan); }
+.text-link { color: var(--cyan); font-weight: 700; border-bottom: 1.5px solid currentColor; padding-bottom: 1px; }
+.text-link:hover { color: var(--cyan); opacity: .75; }
+.subpage h2.role { margin: 72px 0 24px; font-size: clamp(22px, 2.2vw, 30px); letter-spacing: .04em; }
+.subpage .note { margin: 0 0 32px; font-size: 16px; line-height: 2; font-weight: 500; color: var(--navy-2); max-width: 760px; text-wrap: pretty; }
 .spec dd { margin: 0; font-size: 16px; line-height: 1.9; font-weight: 500; white-space: pre-line; overflow-wrap: anywhere; }
 
 .news-articles { display: flex; flex-direction: column; gap: 24px; }

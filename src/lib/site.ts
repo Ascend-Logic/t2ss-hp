@@ -34,6 +34,9 @@ export const site = {
   /** 現行サイト（WordPress） */
   legacyUrl: "https://t2tss.com/",
   ascendFreelanceUrl: "https://ascend-freelance.com/",
+  ascendFreelanceSignupUrl: "https://ascend-freelance.com/auth",
+  /** Ascend Freelance の運営会社。業務委託募集の面談・契約窓口 */
+  ascendLogicName: "株式会社Ascend Logic",
 } as const;
 
 /** GitHub Pages のプロジェクトサイト配下で公開する間のパス接頭辞（独自ドメイン後は空） */
@@ -120,13 +123,13 @@ export const services: Service[] = [
   },
 ];
 
-/** 会社概要「事業内容」 */
-export const businessLines = [
-  "セキュリティソリューション",
-  "セキュリティコンサル＆ツール導入",
-  "生成AI導入支援サービス",
-  "ITエンジニア提供サービス「Ascend Freelance」",
-  "プロジェクトマネジメントサービス",
+/** 会社概要「事業内容」。href を持つ行はリンクとして表示する */
+export const businessLines: { label: string; href?: string }[] = [
+  { label: "セキュリティソリューション" },
+  { label: "セキュリティコンサル＆ツール導入" },
+  { label: "生成AI導入支援サービス" },
+  { label: "ITエンジニア提供サービス「Ascend Freelance」", href: site.ascendFreelanceUrl },
+  { label: "プロジェクトマネジメントサービス" },
 ];
 
 /** 会社概要「主な提携先」（掲載順） */
@@ -145,7 +148,9 @@ export const partners = [
   "株式会社フレンズシステムコンサルティング",
   "ミツイワ情報株式会社",
   "株式会社レイ・イージス・ジャパン",
+  "株式会社レインフォレスト",
   "レノボ・ジャパン合同会社",
+  "ワンスタッド株式会社",
   "Summit Group(サミットグループ)",
   "株式会社Ascend Logic",
   "株式会社FCN",

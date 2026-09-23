@@ -20,7 +20,21 @@ const rows: { label: string; value: React.ReactNode }[] = [
   { label: "事業開始", value: site.businessStart },
   { label: "資本金", value: site.capital },
   { label: "パートナー資格", value: site.partnerQualification },
-  { label: "事業内容", value: businessLines.map((b) => `◇${b}`).join("\n") },
+  {
+    label: "事業内容",
+    value: businessLines.map((b, i) => (
+      <span key={b.label}>
+        {i > 0 && "\n"}◇
+        {b.href ? (
+          <a className="text-link" href={b.href} target="_blank" rel="noopener">
+            {b.label}
+          </a>
+        ) : (
+          b.label
+        )}
+      </span>
+    )),
+  },
   { label: "主な提携先", value: partners.join("\n") },
 ];
 
