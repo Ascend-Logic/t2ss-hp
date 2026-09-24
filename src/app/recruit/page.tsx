@@ -90,7 +90,7 @@ const freelanceRows: { label: string; value: string }[] = [
   },
   {
     label: "窓口",
-    value: `本募集の面談・契約等の具体的な対応は、業務請負先である${site.ascendLogicName}（Ascend Freelance 運営）が行います。`,
+    value: `本募集の面談・契約等の具体的な対応は、${site.ascendLogicName}（Ascend Freelance 運営）が行います。`,
   },
 ];
 
