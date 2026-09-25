@@ -41,5 +41,9 @@ source: "https://..."   # 任意（転載元）
 
 - `main` に push すると `.github/workflows/deploy.yml` がビルドして GitHub Pages にデプロイする
 - リポジトリ設定 → Pages → Source を **GitHub Actions** にしておくこと
-- 独自ドメインを当てるときは Pages 設定でカスタムドメインを登録するだけでよい。
-  ビルド時の `NEXT_PUBLIC_SITE_URL` / `NEXT_PUBLIC_BASE_PATH` は `actions/configure-pages` の出力から自動で決まる
+- 公開 URL は **https://t2-summit.com/** (Pages 設定のカスタムドメイン)。`www.t2-summit.com` と
+  `ascend-logic.github.io/t2ss-hp` はそこへリダイレクトされる
+- DNS は Cloudflare で管理。apex の A レコード 4 件 (185.199.108〜111.153) と `www` の CNAME
+  (`ascend-logic.github.io`) を **DNS only (プロキシ無効)** で登録している。プロキシを有効にすると
+  GitHub 側の証明書更新に失敗するので変更しないこと
+- ビルド時の `NEXT_PUBLIC_SITE_URL` / `NEXT_PUBLIC_BASE_PATH` は `actions/configure-pages` の出力から自動で決まる
